@@ -1,0 +1,6 @@
+F:\Projects\Socks5Listener\Socks5Listener\bin\Debug\netcoreapp2.1\Socks5Listener.deps.json
+F:\Projects\Socks5Listener\Socks5Listener\bin\Debug\netcoreapp2.1\Socks5Listener.dll
+F:\Projects\Socks5Listener\Socks5Listener\obj\Debug\netcoreapp2.1\Socks5Listener.csprojAssemblyReference.cache
+F:\Projects\Socks5Listener\Socks5Listener\obj\Debug\netcoreapp2.1\Socks5Listener.csproj.CoreCompileInputs.cache
+F:\Projects\Socks5Listener\Socks5Listener\obj\Debug\netcoreapp2.1\Socks5Listener.AssemblyInfoInputs.cache
+F:\Projects\Socks5Listener\Socks5Listener\obj\Debug\netcoreapp2.1\Socks5Listener.AssemblyInfo.cs

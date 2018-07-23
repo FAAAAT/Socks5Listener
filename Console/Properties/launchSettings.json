@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "-l localhost:11199 -p localhost:11192 -d localhost:10099"
+    }
+  }
+}

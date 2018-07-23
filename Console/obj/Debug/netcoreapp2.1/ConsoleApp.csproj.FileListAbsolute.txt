@@ -1,0 +1,14 @@
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.deps.json
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.runtimeconfig.json
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.runtimeconfig.dev.json
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.dll
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CoreCompileInputs.cache
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfoInputs.cache
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfo.cs
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\socks5.dll
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\socks5.pdb
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csprojAssemblyReference.cache
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CopyComplete
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.pdb
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.dll
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.pdb

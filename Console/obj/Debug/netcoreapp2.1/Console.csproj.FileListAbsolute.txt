@@ -1,0 +1,3 @@
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\Console.csproj.CoreCompileInputs.cache
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\Console.AssemblyInfoInputs.cache
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\Console.AssemblyInfo.cs
