@@ -12,3 +12,17 @@ F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.Cop
 F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.pdb
 F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.dll
 F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.pdb
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csprojAssemblyReference.cache
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CoreCompileInputs.cache
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfoInputs.cache
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfo.cs
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.dll
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.pdb
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcoreapp2.1\ConsoleApp.deps.json
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcoreapp2.1\ConsoleApp.runtimeconfig.json
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcoreapp2.1\ConsoleApp.runtimeconfig.dev.json
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcoreapp2.1\ConsoleApp.dll
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcoreapp2.1\ConsoleApp.pdb
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcoreapp2.1\socks5.dll
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcoreapp2.1\socks5.pdb
+M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CopyComplete
