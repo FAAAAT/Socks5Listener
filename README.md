@@ -6,7 +6,7 @@
 
 ## How to use?
 
-  Suppose you have a vps and a local machine. You want to do something awesome but your local machine do not have a public IP address and your vps sucks. Then you can deploy this project and [ssocks](https://sourceforge.net/projects/ssocks/) in your vps and local machine. Link them and enjoy!
+  Suppose you have a vps and a local machine. You want to do something awesome but your local machine do not have a public IP address and your vps sucks. Then you can deploy this project and [ssocks](https://sourceforge.net/projects/ssocks/)/[ssocks for windows](https://github.com/tostercx/ssocks) (in the project you can find windows version also) in your vps and local machine. Link them and enjoy!
 
   1. Deploy rcsocks in your vps. Argument -p specified the port that Socks5Listener will connect to. -l specified the port that rssocks will relay to;
 
