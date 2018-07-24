@@ -23,33 +23,21 @@ namespace ConsoleApp.LogService
 		public void Error(string error)
 		{
 			log.Error(error);
-#if DEBUG
-			Console.WriteLine(error);
-#endif
 		}
 
 		public void Warn(string warn)
 		{
 			log.Warn(warn);
-#if DEBUG
-			Console.WriteLine(warn);
-#endif
 		}
 
 		public void Debug(string debug)
 		{
 			log.Debug(debug);
-#if DEBUG
-			Console.WriteLine(debug);
-#endif
 		}
 
 		public void Info(string info)
 		{
 			log.Info(info);
-#if DEBUG
-			Console.WriteLine(info);
-#endif
 
 		}
 	}

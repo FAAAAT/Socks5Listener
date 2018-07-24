@@ -192,7 +192,7 @@ namespace ConsoleApp.Socks
                 }
                 else
                 {
-                    logger.Info("Send data:" + Encoding.UTF8.GetString(buffer));
+                    logger.Debug("Send data:" + Encoding.UTF8.GetString(buffer));
                 }
             }
 
@@ -208,7 +208,7 @@ namespace ConsoleApp.Socks
             var revResult = opendSocks5Client.Receive(buffer, 0, 4096, out var recvError);
             if (revResult > 0)
             {
-                logger.Info("data receive:" + Encoding.UTF8.GetString(buffer));
+                logger.Debug("data receive:" + Encoding.UTF8.GetString(buffer));
                 logger.Info("send begin");
                 Array.Resize<byte>(ref buffer, revResult);
                 var result = opendSocket.Send(buffer, SocketFlags.None, out var error);

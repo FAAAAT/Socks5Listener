@@ -61,7 +61,7 @@ namespace ConsoleApp
 		[Option('l', "listen", HelpText = "address:port to listen", Required = true)]
 		public string Listen { get; set; }
 
-		[Option('d', "dest", HelpText = "address:port to where you want to proxy the connection", Required = true)]
+		[Option('d', "dest", HelpText = "address:port to where you want to proxy the connection . typically, you can just use localhost or your machine name", Required = true)]
 		public string Dest { get; set; }
 
 		[Option('p', "proxy", HelpText = "address:port to socks5 proxy")]

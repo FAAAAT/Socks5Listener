@@ -3,6 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>Socks5Listener</RootNamespace>
+    <AssemblyName>Socks5Listener</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

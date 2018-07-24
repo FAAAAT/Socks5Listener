@@ -26,3 +26,17 @@ M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcor
 M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcoreapp2.1\socks5.dll
 M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\bin\Debug\netcoreapp2.1\socks5.pdb
 M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CopyComplete
+M:\Projects\新建文件夹\Socks5Listener\Console\bin\Debug\netcoreapp2.1\socks5.dll
+M:\Projects\新建文件夹\Socks5Listener\Console\bin\Debug\netcoreapp2.1\socks5.pdb
+M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CoreCompileInputs.cache
+M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfoInputs.cache
+M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfo.cs
+M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CopyComplete
+M:\Projects\新建文件夹\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.deps.json
+M:\Projects\新建文件夹\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.runtimeconfig.json
+M:\Projects\新建文件夹\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.runtimeconfig.dev.json
+M:\Projects\新建文件夹\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.dll
+M:\Projects\新建文件夹\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.pdb
+M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csprojAssemblyReference.cache
+M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\Socks5Listener.dll
+M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\Socks5Listener.pdb

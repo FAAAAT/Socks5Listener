@@ -5546,11 +5546,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "M:\\Projects\\Socks5Listener-master\\Socks5Listener-master\\Console\\ConsoleApp.csproj",
-      "projectName": "ConsoleApp",
-      "projectPath": "M:\\Projects\\Socks5Listener-master\\Socks5Listener-master\\Console\\ConsoleApp.csproj",
+      "projectUniqueName": "M:\\Projects\\新建文件夹\\Socks5Listener\\Console\\ConsoleApp.csproj",
+      "projectName": "Socks5Listener",
+      "projectPath": "M:\\Projects\\新建文件夹\\Socks5Listener\\Console\\ConsoleApp.csproj",
       "packagesPath": "C:\\Users\\74487\\.nuget\\packages\\",
-      "outputPath": "M:\\Projects\\Socks5Listener-master\\Socks5Listener-master\\Console\\obj\\",
+      "outputPath": "M:\\Projects\\新建文件夹\\Socks5Listener\\Console\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
