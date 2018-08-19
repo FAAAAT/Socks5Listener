@@ -1,7 +1,3 @@
-F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.deps.json
-F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.runtimeconfig.json
-F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.runtimeconfig.dev.json
-F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.dll
 F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CoreCompileInputs.cache
 F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfoInputs.cache
 F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfo.cs
@@ -9,9 +5,6 @@ F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\socks5.dll
 F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\socks5.pdb
 F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csprojAssemblyReference.cache
 F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CopyComplete
-F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\ConsoleApp.pdb
-F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.dll
-F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.pdb
 M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csprojAssemblyReference.cache
 M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csproj.CoreCompileInputs.cache
 M:\Projects\Socks5Listener-master\Socks5Listener-master\Console\obj\Debug\netcoreapp2.1\ConsoleApp.AssemblyInfoInputs.cache
@@ -40,3 +33,10 @@ M:\Projects\新建文件夹\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks
 M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\ConsoleApp.csprojAssemblyReference.cache
 M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\Socks5Listener.dll
 M:\Projects\新建文件夹\Socks5Listener\Console\obj\Debug\netcoreapp2.1\Socks5Listener.pdb
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.deps.json
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.runtimeconfig.json
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.runtimeconfig.dev.json
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.dll
+F:\Projects\Socks5Listener\Console\bin\Debug\netcoreapp2.1\Socks5Listener.pdb
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\Socks5Listener.dll
+F:\Projects\Socks5Listener\Console\obj\Debug\netcoreapp2.1\Socks5Listener.pdb

@@ -25,7 +25,8 @@
 
   <ItemGroup>
     <Reference Include="socks5">
-      <HintPath>..\..\..\Socks5\socks5\socks5\bin\Debug\netcoreapp2.0\socks5.dll</HintPath>
+      <HintPath>..\..\Socks5\socks5\socks5\bin\Debug\netcoreapp2.0\socks5.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 
