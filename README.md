@@ -20,8 +20,12 @@
 
   1. Listener DO NOT support IPv6 and UDP. MAY NOT BE support socks5 type bind(not tested,I not find the code).
 
-  2. Unit test is ON THE WAY.
-
+  2. <s>Unit test is ON THE WAY</s>.
+	
   3. Improve my english.
 
   4. I think it can use as an 6to4/6in4 server in the future.
+
+
+## Done
+1. a unit test for base tcp function is ready.
