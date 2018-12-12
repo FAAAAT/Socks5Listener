@@ -4,7 +4,7 @@ using ConsoleApp.Socks;
 using System;
 using System.Collections.Generic;
 using System.Net;
-
+using System.IO;
 
 namespace ConsoleApp
 {
@@ -19,26 +19,45 @@ namespace ConsoleApp
             CommandLine.Parser.Default.ParseArguments<Options>(args)
                 .WithParsed(x =>
                 {
+                    BaseLogger logger = new BaseLogger(new Log4NetLogger());
+
                     var servers = new List<TransferServer>();
 
                     if (string.IsNullOrWhiteSpace(x.ConfigFile))
                     {
-                        BaseLogger logger = new BaseLogger(new Log4NetLogger());
 
                         var listenAddr = x.Listen.Split(':');
                         var proxyAddr = x.Proxy.Split(':');
                         var destAddr = x.Dest.Split(':');
 
-                        var listen = new DnsEndPoint(listenAddr[0], Convert.ToInt32(listenAddr[1]));
-                        var proxy = new DnsEndPoint(proxyAddr[0], Convert.ToInt32(proxyAddr[1]));
-                        var dest = new DnsEndPoint(destAddr[0], Convert.ToInt32(destAddr[1]));
+                        var server = GetTransferServer(listenAddr, proxyAddr, destAddr, logger);
 
-                        TransferServer server = new TransferServer(new IPEndPoint(Dns.GetHostEntry(listen.Host).AddressList[0], listen.Port), proxy, dest, logger);
                         servers.Add(server);
 
                     }
                     else
                     {
+                        FileInfo cf = new FileInfo(x.ConfigFile);
+                        if (!cf.Exists)
+                        {
+                            Console.WriteLine($"can not find config file in {cf.FullName}");
+                        }
+                        else
+                        {
+                            var builder = Config.Net.ConfigurationExtensions.UseIniFile<ISockMapConfig>(new Config.Net.ConfigurationBuilder<ISockMapConfig>(), cf.FullName);
+                            var config = builder.Build();
+                            foreach (ISockMap map in config.Maps)
+                            {
+                                var listenAddr = map.Local.Split(':');
+                                var proxyAddr = x.Proxy.Split(':');
+                                var destAddr = map.Remote.Split(':');
+
+                                var server = GetTransferServer(listenAddr, proxyAddr, destAddr, logger);
+
+                                servers.Add(server);
+                            }
+                        }
+
                     }
 
 
@@ -65,7 +84,15 @@ namespace ConsoleApp
                 });
         }
 
+        public static TransferServer GetTransferServer(string[] listenAddr, string[] proxyAddr, string [] destAddr, BaseLogger logger)
+        {
+            var listen = new DnsEndPoint(listenAddr[0], Convert.ToInt32(listenAddr[1]));
+            var proxy = new DnsEndPoint(proxyAddr[0], Convert.ToInt32(proxyAddr[1]));
+            var dest = new DnsEndPoint(destAddr[0], Convert.ToInt32(destAddr[1]));
 
+            TransferServer server = new TransferServer(new IPEndPoint(Dns.GetHostEntry(listen.Host).AddressList[0], listen.Port), proxy, dest, logger);
+            return server;
+        }
 
     }
 
@@ -100,5 +127,17 @@ namespace ConsoleApp
                 return false;
             return true;
         }
+    }
+
+
+    public interface ISockMapConfig
+    {
+        [Config.Net.Option(Alias = "Maps.Maps")]
+        IEnumerable<ISockMap> Maps { get; set; }
+    }
+    public interface ISockMap
+    {
+        string Local { get; set; }
+        string Remote { get; set; }
     }
 }
