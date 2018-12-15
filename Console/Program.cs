@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
@@ -84,15 +85,45 @@ namespace ConsoleApp
                 });
         }
 
-        public static TransferServer GetTransferServer(string[] listenAddr, string[] proxyAddr, string [] destAddr, BaseLogger logger)
-        {
-            var listen = new DnsEndPoint(listenAddr[0], Convert.ToInt32(listenAddr[1]));
+		public static (DnsEndPoint listen,DnsEndPoint proxy,DnsEndPoint dest) GetTransferServerParameter(string[] listenAddr, string[] proxyAddr, string[] destAddr)
+		{
+			var listen = new DnsEndPoint(listenAddr[0], Convert.ToInt32(listenAddr[1]));
             var proxy = new DnsEndPoint(proxyAddr[0], Convert.ToInt32(proxyAddr[1]));
             var dest = new DnsEndPoint(destAddr[0], Convert.ToInt32(destAddr[1]));
+			return (listen,proxy,dest);
+		}
 
-            TransferServer server = new TransferServer(new IPEndPoint(Dns.GetHostEntry(listen.Host).AddressList[0], listen.Port), proxy, dest, logger);
+        public static TransferServer GetTransferServer(string[] listenAddr, string[] proxyAddr, string [] destAddr, BaseLogger logger)
+        {
+			var tuple = GetTransferServerParameter(listenAddr, proxyAddr, destAddr);
+            
+            TransferServer server = new TransferServer(new IPEndPoint(Dns.GetHostEntry(tuple.listen.Host).AddressList[0], tuple.listen.Port), tuple.proxy, tuple.dest, logger);
             return server;
         }
+        
+        /// <summary>
+        /// deprecated.
+        /// </summary>
+        /// <returns>The async started transfer server.</returns>
+        /// <param name="listenAddr">Listen address.</param>
+        /// <param name="proxyAddr">Proxy address.</param>
+        /// <param name="destAddr">Destination address.</param>
+        /// <param name="logger">Logger.</param>
+        /// <param name="serverTask">Server task.</param>
+		public static TransferServer GetAsyncStartedTransferServer(string[] listenAddr, string[] proxyAddr, string[] destAddr, BaseLogger logger,out Task<TransferServer> serverTask)
+		{
+			var tuple = GetTransferServerParameter(listenAddr, proxyAddr, destAddr);
+
+			var server = new TransferServer(new IPEndPoint(Dns.GetHostEntry(tuple.listen.Host).AddressList[0], tuple.listen.Port), tuple.proxy, tuple.dest, logger);
+
+			serverTask = new Task<TransferServer>((state) => 
+			{
+				var temp = state as TransferServer;
+				return temp;
+			}, server);
+            
+			return server;
+		}
 
     }
 
@@ -132,12 +163,11 @@ namespace ConsoleApp
 
     public interface ISockMapConfig
     {
-        [Config.Net.Option(Alias = "Maps.Maps")]
-        IEnumerable<ISockMap> Maps { get; set; }
+        IEnumerable<ISockMap> Maps { get; }
     }
     public interface ISockMap
     {
-        string Local { get; set; }
-        string Remote { get; set; }
+        string Local { get; }
+        string Remote { get; }
     }
 }

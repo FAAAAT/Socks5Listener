@@ -8,14 +8,17 @@ using System.Net.Sockets;
 using System.Text;
 using ConsoleApp.LogService;
 using ConsoleApp.Socks;
+using ConsoleApp;
 using Socks5Listener.Helper;
 using Xunit;
 using Xunit.Abstractions;
+using Config;
+using Config.Net;
 
 namespace UnitTest
 {
 
-	public class TestLogger:ISystemLogger
+	public class TestLogger : ISystemLogger
 	{
 		private ITestOutputHelper output;
 		public TestLogger(ITestOutputHelper output)
@@ -36,7 +39,7 @@ namespace UnitTest
 		public void Debug(string debug)
 		{
 			output.WriteLine(debug);
-			
+
 		}
 
 		public void Info(string info)
@@ -93,7 +96,7 @@ namespace UnitTest
 			IPGlobalProperties properties = IPGlobalProperties.GetIPGlobalProperties();
 			if (properties.GetActiveTcpListeners().Any(x => x.Address.Equals(ep.Address) && x.Port == ep.Port))
 			{
-				output.WriteLine("port has been used "+ep.Port);
+				output.WriteLine("port has been used " + ep.Port);
 				return false;
 			}
 
@@ -108,9 +111,9 @@ namespace UnitTest
 
 					var ns = x.Result;
 					ns.Send(Encoding.UTF8.GetBytes(testContent));
-					
-//					ns.Shutdown(SocketShutdown.Send);
-//					ns.Close();
+
+					//					ns.Shutdown(SocketShutdown.Send);
+					//					ns.Close();
 				}
 
 
@@ -145,45 +148,45 @@ namespace UnitTest
 			return result;
 		}
 
-		private bool TestTTTService(string ip, int listenPortForService,string serviceListeningip,string testServerEPAddress,out TransferServer ts)
+		private bool TestTTTService(string ip, int listenPortForService, string serviceListeningip, string testServerEPAddress, out TransferServer ts)
 		{
 			ts = null;
 			var result = false;
-			if (!IPEndPointHelper.TryParseEndPoint(ip + ":" + listenPortForService,out var ep,out var msg))
+			if (!IPEndPointHelper.TryParseEndPoint(ip + ":" + listenPortForService, out var ep, out var msg))
 			{
 				output.WriteLine(msg);
 				return result;
 			}
-			if (!IPEndPointHelper.TryParseEndPoint(serviceListeningip, out var listenEp,out var msg2))
+			if (!IPEndPointHelper.TryParseEndPoint(serviceListeningip, out var listenEp, out var msg2))
 			{
 				output.WriteLine(msg2);
 				return result;
 			}
-			if (!IPEndPointHelper.TryParseEndPoint(testServerEPAddress,out var testServerEP,out var msg3))
+			if (!IPEndPointHelper.TryParseEndPoint(testServerEPAddress, out var testServerEP, out var msg3))
 			{
 				output.WriteLine(msg3);
 				return result;
 			}
 
-			ts = new TransferServer(listenEp,ep,testServerEP,new BaseLogger(new TestLogger(output)) );
+			ts = new TransferServer(listenEp, ep, testServerEP, new BaseLogger(new TestLogger(output)));
 			result = true;
 			return result;
 		}
 
-		private bool TestClient(string content,string ipEndPointAddress, out Socket s)
+		private bool TestClient(string content, string ipEndPointAddress, out Socket s)
 		{
 			s = null;
-			if (!IPEndPointHelper.TryParseEndPoint(ipEndPointAddress,out var ep,out var msg))
+			if (!IPEndPointHelper.TryParseEndPoint(ipEndPointAddress, out var ep, out var msg))
 			{
 				output.WriteLine(msg);
 				return false;
 			}
 			var result = false;
-			s= new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
+			s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			s.Connect(ep);
 			byte[] buffer = new byte[4096];
 			var length = s.Receive(buffer);
-			if ( length== 0)
+			if (length == 0)
 			{
 				output.WriteLine("remote closed unexcepted");
 				return false;
@@ -230,12 +233,12 @@ namespace UnitTest
 					return result;
 				}
 
-				if (!TestTTTService("localhost",ListenServicePort,ServiceListeningIP,IPEndpoint,out ts))
+				if (!TestTTTService("localhost", ListenServicePort, ServiceListeningIP, IPEndpoint, out ts))
 				{
 					return result;
 				}
 
-				if (!TestClient(TestContent,ServiceListeningIP,out clientSocket))
+				if (!TestClient(TestContent, ServiceListeningIP, out clientSocket))
 				{
 					return result;
 				}
@@ -250,17 +253,17 @@ namespace UnitTest
 			}
 			finally
 			{
-				if (testServer!=null)
+				if (testServer != null)
 				{
 					testServer.Close();
 					testServer.Dispose();
 				}
-				if (rcsocks!=null)
+				if (rcsocks != null)
 				{
 					rcsocks.Kill();
 					rcsocks.Close();
 				}
-				if (rssocks!=null)
+				if (rssocks != null)
 				{
 					rssocks.Kill();
 					rssocks.Close();
@@ -269,18 +272,35 @@ namespace UnitTest
 				{
 					ts.Close();
 				}
-				if (clientSocket!=null)
+				if (clientSocket != null)
 				{
 					clientSocket.Disconnect(false);
 					clientSocket.Close();
 					clientSocket.Dispose();
-					
+
 				}
 			}
 
 
 		}
 
+
+	}
+
+	public class ConfigurationTest
+	{
+
+		public string file = "./SockMaps.ini";
+		[Fact]
+		public void TestConfiruation()
+		{
+			var builder = Config.Net.ConfigurationExtensions.UseIniFile<ISockMapConfig>(new Config.Net.ConfigurationBuilder<ISockMapConfig>(), this.file);
+			var config = builder.Build();
+
+			Assert.True(config.Maps.Any());
+
+
+		}
 
 	}
 }

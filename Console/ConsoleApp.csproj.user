@@ -3,4 +3,9 @@
   <PropertyGroup>
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-p localhost:127.0.0.1 -c ./SockMaps.ini</StartArguments>
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
 </Project>
