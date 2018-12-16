@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.IO;
 using System.Threading.Tasks;
+using Config.Net;
 
+using Option = CommandLine.OptionAttribute;
 namespace ConsoleApp
 {
     class Program
@@ -45,8 +47,9 @@ namespace ConsoleApp
                         }
                         else
                         {
-                            var builder = Config.Net.ConfigurationExtensions.UseIniFile<ISockMapConfig>(new Config.Net.ConfigurationBuilder<ISockMapConfig>(), cf.FullName);
-                            var config = builder.Build();
+    						var builder = new ConfigurationBuilder<ISockMapConfig>();
+						builder.UseJsonFile(cf.FullName);
+                                var config = builder.Build();
                             foreach (ISockMap map in config.Maps)
                             {
                                 var listenAddr = map.Local.Split(':');

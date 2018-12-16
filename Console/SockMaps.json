@@ -1,0 +1,17 @@
+﻿{
+  "Maps": [
+    {
+      "Local": "localhost:20099",
+      "Remote": "localhost:20099"
+    },
+    {
+      "Local": "localhost:20099",
+      "Remote": "localhost:20099"
+    },
+    {
+      "Local": "localhost:20099",
+      "Remote": "localhost:20099"
+    }
+    
+  ]
+}

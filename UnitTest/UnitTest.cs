@@ -14,6 +14,7 @@ using Xunit;
 using Xunit.Abstractions;
 using Config;
 using Config.Net;
+using Config.Net.Core;
 
 namespace UnitTest
 {
@@ -290,16 +291,30 @@ namespace UnitTest
 	public class ConfigurationTest
 	{
 
-		public string file = "./SockMaps.ini";
+		public string file = "./SockMaps.json";
 		[Fact]
-		public void TestConfiruation()
+		public void TestConfiguration()
 		{
-			var builder = Config.Net.ConfigurationExtensions.UseIniFile<ISockMapConfig>(new Config.Net.ConfigurationBuilder<ISockMapConfig>(), this.file);
+			var builder = new ConfigurationBuilder<ISockMapConfig>();
+			builder.UseJsonFile(this.file);
 			var config = builder.Build();
 
-			Assert.True(config.Maps.Any());
+			Assert.True(config.Maps.Any());         
+		}
 
+		[Fact]
+		public void TestConfigurationContent()
+		{
+			var builder = new ConfigurationBuilder<ISockMapConfig>();
+            builder.UseJsonFile(this.file);
+            var config = builder.Build();
 
+			Assert.True(config.Maps.Count() == 3,"config item count should be 3");
+
+			foreach(var item in config.Maps)
+			{
+				Assert.True(item.Local != null && item.Remote != null,"config content should not be null.");
+			}
 		}
 
 	}

@@ -23,6 +23,7 @@
     <PackageReference Include="CommandLineParser" Version="2.2.1" />
     <PackageReference Include="Config.Net" Version="4.11.0" />
     <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Config.Net.Json" Version="4.11.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,5 +40,10 @@
     <Content Include="SockMaps.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="SockMaps.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
