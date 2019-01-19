@@ -23,6 +23,7 @@ namespace ConsoleApp
                 .WithParsed(x =>
                 {
                     BaseLogger logger = new BaseLogger(new Log4NetLogger());
+                    List<Task<TransferServer>> tasks = new List<Task<TransferServer>>();
 
                     var servers = new List<TransferServer>();
 
@@ -56,8 +57,9 @@ namespace ConsoleApp
                                 var proxyAddr = x.Proxy.Split(':');
                                 var destAddr = map.Remote.Split(':');
 
-                                var server = GetTransferServer(listenAddr, proxyAddr, destAddr, logger);
+                                var server = GetAsyncStartedTransferServer(listenAddr, proxyAddr, destAddr, logger, out var serverTask);
 
+                                tasks.Add(serverTask);
                                 servers.Add(server);
                             }
                         }
@@ -78,6 +80,9 @@ namespace ConsoleApp
 
                         }
                     }
+
+                    Task.WaitAll(tasks.ToArray());
+
                 })
                 .WithNotParsed(x =>
                 {
