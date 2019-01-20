@@ -60,7 +60,7 @@ namespace ConsoleApp
                                 if (map.Local == null || map.Remote == null)
                                     break;
                                 var listenAddr = map.Local.Split(':');
-                                if (listenAddr.Length < 2)
+                                if (listenAddr == null||listenAddr.Length < 2)
                                     Console.WriteLine("Error listen term less than 2");
                                 var proxyAddr = x.Proxy.Split(':');
                                 if (proxyAddr.Length < 2)
