@@ -53,11 +53,12 @@ namespace ConsoleApp
                                 var config = builder.Build();
                             foreach (ISockMap map in config.Maps)
                             {
+                                Console.WriteLine($"Loaded config settings:{map.Local}=>{map.Remote}");
                                 var listenAddr = map.Local.Split(':');
                                 var proxyAddr = x.Proxy.Split(':');
                                 var destAddr = map.Remote.Split(':');
 
-                                var server = GetAsyncStartedTransferServer(listenAddr, proxyAddr, destAddr, logger, out var serverTask);
+                                var server = GetTransferServer(listenAddr, proxyAddr, destAddr, logger);
 
                                 servers.Add(server);
                             }
