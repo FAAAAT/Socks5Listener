@@ -54,6 +54,8 @@ namespace ConsoleApp
                                 var config = builder.Build();
                             foreach (ISockMap map in config.Maps)
                             {
+                                if (map == null || map.Local == null || map.Remote == null)
+                                    break;
                                 Console.WriteLine($"Loaded config settings:{map.Local}=>{map.Remote}");
                                 var listenAddr = map.Local.Split(':');
                                 if (listenAddr.Length < 2)
