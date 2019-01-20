@@ -2,7 +2,7 @@
   "profiles": {
     "ConsoleApp": {
       "commandName": "Project",
-      "commandLineArgs": "-l localhost:11199 -p localhost:11192 -d localhost:10099"
+      "commandLineArgs": "-p 45.77.31.153:20101 -c ./SockMaps.json"
     }
   }
 }

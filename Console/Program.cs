@@ -10,6 +10,8 @@ using Config.Net;
 
 using Option = CommandLine.OptionAttribute;
 using System.Linq;
+using System.Net.Sockets;
+
 namespace ConsoleApp
 {
     class Program
@@ -54,9 +56,8 @@ namespace ConsoleApp
                                 var config = builder.Build();
                             foreach (ISockMap map in config.Maps)
                             {
-
                                 Console.WriteLine($"Loaded config settings:{map.Local}=>{map.Remote}");
-                                if (map == null || map.Local == null || map.Remote == null)
+                                if (map.Local == null || map.Remote == null)
                                     break;
                                 var listenAddr = map.Local.Split(':');
                                 if (listenAddr.Length < 2)
@@ -121,7 +122,7 @@ namespace ConsoleApp
             }
             else 
             {
-                ip = hostEntry.AddressList[0];
+                ip = IPAddress.Any;
             }
             
             TransferServer server = new TransferServer(new IPEndPoint(ip, tuple.listen.Port), tuple.proxy, tuple.dest, logger);

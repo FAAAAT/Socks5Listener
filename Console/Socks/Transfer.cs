@@ -1,15 +1,12 @@
-﻿using System;
+﻿using ConsoleApp.LogService;
+using socks5.Socks5Client;
+using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ConsoleApp.LogService;
-using socks5.Socks5Client;
-using System.Diagnostics;
 
 
 namespace ConsoleApp.Socks
@@ -75,7 +72,7 @@ namespace ConsoleApp.Socks
             //			opendSocks5Client.OnDataReceived += OpendSocks5Client_OnDataReceived;
             opendSocks5Client.OnDisconnected += OpendSocks5Client_OnDisconnected;
 
-            logger.Info(this.GetHashCode()+"=>"+ (opendSocks5Client.Client.Sock.LocalEndPoint as IPEndPoint) + "<->" + (opendSocks5Client.Client.Sock.RemoteEndPoint as IPEndPoint));
+            logger.Info(this.GetHashCode() + "=>" + (opendSocks5Client.Client.Sock.LocalEndPoint as IPEndPoint) + "<->" + (opendSocks5Client.Client.Sock.RemoteEndPoint as IPEndPoint));
 
             var tasks = new[]{
                 Task.Run(() =>
@@ -100,6 +97,7 @@ namespace ConsoleApp.Socks
                     }
 
                 }, tmpArgs),
+
                 Task.Run(() =>
                 {
                     while (!this.breakLoopTrace)
@@ -175,7 +173,7 @@ namespace ConsoleApp.Socks
 
             var result = opendSocket.Receive(buffer, SocketFlags.None, out var errorCode);
 
-            if (result <= 0 || errorCode != default(SocketError))
+            if (result < 0 || errorCode != SocketError.Success)
             {
 
                 breakLoopTrace = true;
@@ -201,7 +199,7 @@ namespace ConsoleApp.Socks
 
         private void LoopTranClient()
         {
-           
+
             var buffer = new byte[4096];
 
             logger.Info($"client prepare to receive {this.GetHashCode()}");
@@ -223,7 +221,7 @@ namespace ConsoleApp.Socks
 
                 }
             }
-            else
+            else if (recvError != SocketError.Success)
             {
                 throw new Exception(recvError + "");
             }
@@ -282,7 +280,7 @@ namespace ConsoleApp.Socks
         {
             var dataSocket = socket.Accept();
             logger.Info($"socket accepted:{dataSocket.RemoteEndPoint as IPEndPoint}<->{dataSocket.LocalEndPoint as IPEndPoint}");
-            Socks5Client client = new Socks5Client(proxy, dest);
+            Socks5Client client = new Socks5Client(proxy, dest, new Socks5ClientOptions() { KeepAlive = true });
             if (!client.ConnectWithEp())
             {
                 throw new Exception("socks cannot connect");
@@ -295,7 +293,7 @@ namespace ConsoleApp.Socks
                 adapter.Stop();
                 adapters.Remove(args.Adapter);
                 logger.Info("remove adapter");
-                
+
             };
             logger.Info($" adapter starting {adapter.GetHashCode()}"); ;
 
