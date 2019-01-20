@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Config.Net;
 
 using Option = CommandLine.OptionAttribute;
+using System.Linq;
 namespace ConsoleApp
 {
     class Program
@@ -109,7 +110,18 @@ namespace ConsoleApp
         public static TransferServer GetTransferServer(string[] listenAddr, string[] proxyAddr, string [] destAddr, BaseLogger logger)
         {
             var tuple = GetTransferServerParameter(listenAddr, proxyAddr, destAddr);
-            TransferServer server = new TransferServer(new IPEndPoint(Dns.GetHostEntry(tuple.listen.Host).AddressList[0], tuple.listen.Port), tuple.proxy, tuple.dest, logger);
+            IPAddress ip = null;
+            var hostEntry = Dns.GetHostEntry(tuple.listen.Host);
+            if(hostEntry.AddressList.Count() == 0) 
+            {
+                ip = IPAddress.Parse(tuple.listen.Host);
+            }
+            else 
+            {
+                ip = hostEntry.AddressList[0];
+            }
+            
+            TransferServer server = new TransferServer(new IPEndPoint(ip, tuple.listen.Port), tuple.proxy, tuple.dest, logger);
             return server;
         }
         

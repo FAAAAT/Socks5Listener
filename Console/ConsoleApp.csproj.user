@@ -5,7 +5,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <StartAction>Project</StartAction>
-    <StartArguments>-p localhost:127.0.0.1 -c ./SockMaps.ini</StartArguments>
+    <StartArguments>-p 45.77.31.153:20101 -c ./SockMaps.json</StartArguments>
     <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
 </Project>
