@@ -115,14 +115,21 @@ namespace ConsoleApp
         {
             var tuple = GetTransferServerParameter(listenAddr, proxyAddr, destAddr);
             IPAddress ip = null;
-            var hostEntry = Dns.GetHostEntry(tuple.listen.Host);
-            if(hostEntry.AddressList.Count() == 0) 
-            {
-                ip = IPAddress.Parse(tuple.listen.Host);
-            }
-            else 
+            if (listenAddr[0] == "0.0.0.0")
             {
                 ip = IPAddress.Any;
+            }
+            else
+            {
+                var hostEntry = Dns.GetHostEntry(tuple.listen.Host);
+                if (hostEntry.AddressList.Count() == 0)
+                {
+                    ip = IPAddress.Parse(tuple.listen.Host);
+                }
+                else
+                {
+                    ip = IPAddress.Any;
+                }
             }
             
             TransferServer server = new TransferServer(new IPEndPoint(ip, tuple.listen.Port), tuple.proxy, tuple.dest, logger);

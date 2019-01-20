@@ -56,6 +56,7 @@ namespace ConsoleApp.Socks
 
         private bool breakLoopTrace = false;
 
+        public Task[] CachedTasks;
 
         private bool check()
         {
@@ -74,7 +75,7 @@ namespace ConsoleApp.Socks
 
             logger.Info(this.GetHashCode() + "=>" + (opendSocks5Client.Client.Sock.LocalEndPoint as IPEndPoint) + "<->" + (opendSocks5Client.Client.Sock.RemoteEndPoint as IPEndPoint));
 
-            var tasks = new[]{
+            CachedTasks = new[]{
                 Task.Run(() =>
                 {
                     while (true)
@@ -131,7 +132,7 @@ namespace ConsoleApp.Socks
                     }
                 }, tmpArgs)};
 
-            Task.WhenAll(tasks).ContinueWith(x =>
+            Task.WhenAll(CachedTasks).ContinueWith(x =>
             {
                 this.opendSocket.Shutdown(SocketShutdown.Both);
                 this.opendSocks5Client.Client.Sock.Shutdown(SocketShutdown.Both);
@@ -235,6 +236,7 @@ namespace ConsoleApp.Socks
         {
             source.Cancel();
             logger.Info("adapter stoped");
+            Task.WaitAll(this.CachedTasks);
             return true;
         }
 
