@@ -55,8 +55,14 @@ namespace ConsoleApp
                             {
                                 Console.WriteLine($"Loaded config settings:{map.Local}=>{map.Remote}");
                                 var listenAddr = map.Local.Split(':');
+                                if (listenAddr.Length < 2)
+                                    Console.WriteLine("Error listen term less than 2");
                                 var proxyAddr = x.Proxy.Split(':');
+                                if (proxyAddr.Length < 2)
+                                    Console.WriteLine("Error proxy term less than 2");
                                 var destAddr = map.Remote.Split(':');
+                                if (destAddr.Length < 2)
+                                    Console.WriteLine("Error dest term less than 2");
 
                                 var server = GetTransferServer(listenAddr, proxyAddr, destAddr, logger);
 
