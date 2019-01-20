@@ -1,16 +1,14 @@
 ﻿using CommandLine;
+using Config.Net;
 using ConsoleApp.LogService;
 using ConsoleApp.Socks;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.IO;
-using System.Threading.Tasks;
-using Config.Net;
-
-using Option = CommandLine.OptionAttribute;
 using System.Linq;
-using System.Net.Sockets;
+using System.Net;
+using System.Threading.Tasks;
+using Option = CommandLine.OptionAttribute;
 
 namespace ConsoleApp
 {
@@ -51,22 +49,22 @@ namespace ConsoleApp
                         }
                         else
                         {
-    						var builder = new ConfigurationBuilder<ISockMapConfig>();
-						builder.UseJsonFile(cf.FullName);
-                                var config = builder.Build();
+                            var builder = new ConfigurationBuilder<ISockMapConfig>();
+                            builder.UseJsonFile(cf.FullName);
+                            var config = builder.Build();
                             foreach (ISockMap map in config.Maps)
                             {
                                 Console.WriteLine($"Loaded config settings:{map.Local}=>{map.Remote}");
                                 if (map.Local == null || map.Remote == null)
                                     break;
                                 var listenAddr = map.Local.Split(':');
-                                if (listenAddr == null||listenAddr.Length < 2)
+                                if (listenAddr == null || listenAddr.Length < 2)
                                     Console.WriteLine("Error listen term less than 2");
                                 var proxyAddr = x.Proxy.Split(':');
-                                if (proxyAddr.Length < 2)
+                                if (proxyAddr == null || proxyAddr.Length < 2)
                                     Console.WriteLine("Error proxy term less than 2");
                                 var destAddr = map.Remote.Split(':');
-                                if (destAddr.Length < 2)
+                                if (destAddr == null || destAddr.Length < 2)
                                     Console.WriteLine("Error dest term less than 2");
 
                                 var server = GetTransferServer(listenAddr, proxyAddr, destAddr, logger);
@@ -103,15 +101,15 @@ namespace ConsoleApp
                 });
         }
 
-        public static (DnsEndPoint listen,DnsEndPoint proxy,DnsEndPoint dest) GetTransferServerParameter(string[] listenAddr, string[] proxyAddr, string[] destAddr)
-		{
-			var listen = new DnsEndPoint(listenAddr[0], Convert.ToInt32(listenAddr[1]));
+        public static (DnsEndPoint listen, DnsEndPoint proxy, DnsEndPoint dest) GetTransferServerParameter(string[] listenAddr, string[] proxyAddr, string[] destAddr)
+        {
+            var listen = new DnsEndPoint(listenAddr[0], Convert.ToInt32(listenAddr[1]));
             var proxy = new DnsEndPoint(proxyAddr[0], Convert.ToInt32(proxyAddr[1]));
             var dest = new DnsEndPoint(destAddr[0], Convert.ToInt32(destAddr[1]));
-			return (listen,proxy,dest);
-		}
+            return (listen, proxy, dest);
+        }
 
-        public static TransferServer GetTransferServer(string[] listenAddr, string[] proxyAddr, string [] destAddr, BaseLogger logger)
+        public static TransferServer GetTransferServer(string[] listenAddr, string[] proxyAddr, string[] destAddr, BaseLogger logger)
         {
             var tuple = GetTransferServerParameter(listenAddr, proxyAddr, destAddr);
             IPAddress ip = null;
@@ -131,11 +129,11 @@ namespace ConsoleApp
                     ip = IPAddress.Any;
                 }
             }
-            
+
             TransferServer server = new TransferServer(new IPEndPoint(ip, tuple.listen.Port), tuple.proxy, tuple.dest, logger);
             return server;
         }
-        
+
         /// <summary>
         /// deprecated.
         /// </summary>
@@ -145,19 +143,19 @@ namespace ConsoleApp
         /// <param name="destAddr">Destination address.</param>
         /// <param name="logger">Logger.</param>
         /// <param name="serverTask">Server task.</param>
-        public static TransferServer GetAsyncStartedTransferServer(string[] listenAddr, string[] proxyAddr, string[] destAddr, BaseLogger logger,out Task<TransferServer> serverTask)
+        public static TransferServer GetAsyncStartedTransferServer(string[] listenAddr, string[] proxyAddr, string[] destAddr, BaseLogger logger, out Task<TransferServer> serverTask)
         {
-    			var tuple = GetTransferServerParameter(listenAddr, proxyAddr, destAddr);
+            var tuple = GetTransferServerParameter(listenAddr, proxyAddr, destAddr);
 
-    			var server = new TransferServer(new IPEndPoint(Dns.GetHostEntry(tuple.listen.Host).AddressList[0], tuple.listen.Port), tuple.proxy, tuple.dest, logger);
+            var server = new TransferServer(new IPEndPoint(Dns.GetHostEntry(tuple.listen.Host).AddressList[0], tuple.listen.Port), tuple.proxy, tuple.dest, logger);
 
-    			serverTask = new Task<TransferServer>((state) => 
-    			{
-    				var temp = state as TransferServer;
-    				return temp;
-    			}, server);
-                
-    			return server;
+            serverTask = new Task<TransferServer>((state) =>
+            {
+                var temp = state as TransferServer;
+                return temp;
+            }, server);
+
+            return server;
         }
 
     }
